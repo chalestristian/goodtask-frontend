@@ -21,21 +21,21 @@
        <div *ngIf='!task.inputshow' class="btns-check">
         <span class="pointer">
           <div *ngIf="task.active; else elseBlock">
-            <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)">radio_button_unchecked</span>
+            <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)" placement="top" ngbTooltip="Check this task">radio_button_unchecked</span>
           </div>
         </span>
 
         <ng-template #elseBlock class="pointer">
-          <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)">check_circle</span>
+          <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)" placement="top" ngbTooltip="Uncheck this task">check_circle</span>
         </ng-template>
   </div>
 
 
 
-        <span *ngIf='!task.inputshow'  (click)="task.inputshow = !task.inputshow" class="task-description pointer">{{task.task}}
-        <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}">edit</span>
+        <span *ngIf='!task.inputshow'  (click)="task.inputshow = !task.inputshow" class="task-description pointer"  placement="top" ngbTooltip="Edit task">{{task.task}}
+        <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}" placement="top" ngbTooltip="Edit task">edit</span>
         </span>
-        <span  *ngIf='!task.inputshow' class="material-symbols-outlined btns pointer delete" [ngClass]="{green: !task.active, red: task.active}" (click)="remover(task.id)" >delete_forever</span>
+        <span  *ngIf='!task.inputshow' class="material-symbols-outlined btns pointer delete" [ngClass]="{green: !task.active, red: task.active}" (click)="remover(task.id)"  placement="top" ngbTooltip="Delete task">delete_forever</span>
         <input *ngIf='task.inputshow' [ngClass]="{greenInput: !task.active, redInput: task.active}" class="input" value="{{task.task}}" type='text' name="" id='{{task.id}}' [(ngModel)]="task.task" />
         <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer" [ngClass]="{green: !task.active, red: task.active}" (click)="list()">cancel</span>
         <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer" [ngClass]="{green: !task.active, red: task.active}" (click)="update(task)" type="submit">save</span>        
