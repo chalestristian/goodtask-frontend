@@ -1,46 +1,57 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <main>
   <header>
-    <h1 class="title"  matTooltip="Info about the action">GoodTasks</h1>
+    <h1 class="title" matTooltip="Info about the action">GoodTasks</h1>
   </header>
 
   <div>
-    <section>
-        <input type="text" class="form-create" name="task" placeholder="Create a new task" [(ngModel)]="task.task" autofocus />
-        <span (click)="create()" type="submit"  class="btn-create pointer" >Create</span>
-    </section>  
+    <form [formGroup]="taskForm" (ngSubmit)="create()">
+      <input type="text" class="form-create" formControlName="task" placeholder="Create a new task" />
+      <button type="submit" class="btn-create pointer">Create</button>
+    </form>
   </div>
 
   <div class="main">
-  <h2 class="title">Minhas Taks</h2>
-  
-  <div class="list-block">
-    <ul>
-      <li *ngFor="let task of tasks"  [ngClass]="{greenLi: !task.active, redLi: task.active}">        
-       <div *ngIf='!task.inputshow' class="btns-check">
-        <span class="pointer">
-          <div *ngIf="task.active; else elseBlock">
-            <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)" placement="top" ngbTooltip="Check this task">radio_button_unchecked</span>
+    <h2 class="title">Minhas Taks</h2>
+
+    <div class="list-block">
+      <ul>
+        <li *ngFor="let task of tasks" [ngClass]="{greenLi: !task.active, redLi: task.active}">
+          <div *ngIf='!task.inputshow' class="btns-check">
+            <span class="pointer">
+              <div *ngIf="task.active; else elseBlock">
+                <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}"
+                  (click)="state(task)" placement="top" ngbTooltip="Check this task">radio_button_unchecked</span>
+              </div>
+            </span>
+
+            <ng-template #elseBlock class="pointer">
+              <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}"
+                (click)="state(task)" placement="top" ngbTooltip="Uncheck this task">check_circle</span>
+            </ng-template>
           </div>
-        </span>
 
-        <ng-template #elseBlock class="pointer">
-          <span class="material-symbols-outlined btns" [ngClass]="{green: !task.active, red: task.active}" (click)="ChangeState(task)" placement="top" ngbTooltip="Uncheck this task">check_circle</span>
-        </ng-template>
+
+          <span *ngIf='!task.inputshow' (click)="task.inputshow = !task.inputshow" class="task-description pointer"
+            placement="top" ngbTooltip="Edit task">{{task.task}}
+            <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}"
+              placement="top" ngbTooltip="Edit task">edit</span>
+          </span>
+          <span *ngIf='!task.inputshow' class="material-symbols-outlined btns pointer delete"
+            [ngClass]="{green: !task.active, red: task.active}" (click)="remove(task.id)" placement="top"
+            ngbTooltip="Delete task">delete_forever</span>
+          <input *ngIf='task.inputshow' [ngClass]="{greenInput: !task.active, redInput: task.active}" class="input"
+            value="{{task.task}}" type='text' name="" id='{{task.id}}' [(ngModel)]="task.task" />
+          <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer"
+            [ngClass]="{green: !task.active, red: task.active}" (click)="list()" placement="top"
+            ngbTooltip="Discard changes">cancel</span>
+          <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer"
+            [ngClass]="{green: !task.active, red: task.active}" (click)="update(task)" type="submit" placement="top"
+            ngbTooltip="Save changes">save</span>
+        </li>
+      </ul>
+    </div>
   </div>
-
-
-
-        <span *ngIf='!task.inputshow'  (click)="task.inputshow = !task.inputshow" class="task-description pointer"  placement="top" ngbTooltip="Edit task">{{task.task}}
-        <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}" placement="top" ngbTooltip="Edit task">edit</span>
-        </span>
-        <span  *ngIf='!task.inputshow' class="material-symbols-outlined btns pointer delete" [ngClass]="{green: !task.active, red: task.active}" (click)="remover(task.id)"  placement="top" ngbTooltip="Delete task">delete_forever</span>
-        <input *ngIf='task.inputshow' [ngClass]="{greenInput: !task.active, redInput: task.active}" class="input" value="{{task.task}}" type='text' name="" id='{{task.id}}' [(ngModel)]="task.task" />
-        <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer" [ngClass]="{green: !task.active, red: task.active}" (click)="list()">cancel</span>
-        <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer" [ngClass]="{green: !task.active, red: task.active}" (click)="update(task)" type="submit">save</span>        
-      </li>
-    </ul>  
-  </div>
-</div>
 </main>

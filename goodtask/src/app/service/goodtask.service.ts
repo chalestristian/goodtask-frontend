@@ -16,27 +16,19 @@ export class GoodtaskService {
     return this.http.post(`${API_PATH}tasks`, task);
   }
 
-  listarTasks() : Observable<any>{
-    return this.http.get(`${API_PATH}tasks/`)
-  }
-  
-  listarAllTasks() : Observable<any>{    
+  ListTasks() : Observable<any>{    
     return this.http.get(`${API_PATH}tasks/all/`)
   }  
   
-  
-  atualizarTask(task: TaskModel) : Observable<any>{
-    console.log("no service",task)
+  UpdateTask(task: TaskModel) : Observable<any>{
     return this.http.put(`${API_PATH}tasks/update/`, task);
   }
     
-  removerTask(id: any) : Observable<any>{
+  RemoveTask(id: any) : Observable<any>{
     return this.http.delete(`${API_PATH}tasks/delete/`.concat(id));
   }
     
-  desativarTask(task: TaskModel) : Observable<any>{
-    console.log("no service",task)
+  ChangeState(task: TaskModel) : Observable<any>{
     return this.http.put(`${API_PATH}tasks/update/`, task);
   }  
-
 }

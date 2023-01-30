@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TasklistTaskListComponent } from './tasklist-task-list/tasklist-task-list.component';
 import { TaskModel } from './model/TaskModel';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     HttpClientModule,
     FormsModule, 
+    ReactiveFormsModule,
     AppRoutingModule, NgbModule
   ],
   providers: [HttpClientModule, TaskModel],
