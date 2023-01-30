@@ -1,0 +1,123 @@
+h1{font-size: 6em;}
+h2{font-size: 4em;}
+.pointer{cursor: pointer;}
+
+
+.title{
+    font-family: 'Rampart One', cursive;
+    color: #4F4F4F;
+    font-weight: 900;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+}
+
+.form-create{
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    font-size: 1.5em;  
+    border-radius: 5px;
+    border: 2px solid #e0e0e0; 
+    padding: 10px;
+    
+}
+
+.btn-create{
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #ffffff;
+    background-color: #12a876c5;
+    border: 3px solid #12a876c5;
+    margin-left: 25px;
+    width: 100px;
+    border-radius: 5px;
+ 
+}
+
+.btn-create:hover{
+    background-color: #12a876;
+    border: 3px solid #12a876;
+}
+
+
+h2{
+    padding: 15px;
+    margin-left: 45px;
+}
+
+.list-block{
+    margin-top: 10px;
+}
+
+li{
+    list-style: none;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.btns{
+    font-size: 50px;
+}
+
+.green{
+    color: #006936;
+}
+
+.red{
+    color: #ff00008e;    
+}
+
+span{
+    vertical-align:middle;
+    display: inline-block;
+    font-size: 30px;
+    color: #000000bb;
+    margin-right: 30px;
+}
+
+.btns-check{
+    display: inline-block;
+}
+
+.edit{
+    vertical-align: top;
+    font-size: 25px;
+}
+
+
+.greenLi{
+    border: 5px solid #9dff9d46;
+    background-color: #d3ffd3;
+}
+
+.redLi{
+    border: 5px solid #ffd89d46;
+    background-color: #ffded3;
+}
+
+.delete{
+    position:absolute;
+    right: 50px;
+    padding: 4px;
+}
+
+.input{
+    color: #000000bb;
+    display: flex;
+    width: 50%;
+    border: 1px solid wheat;
+    font-size: 25px;
+    background-color: #ffffff;
+}
+
