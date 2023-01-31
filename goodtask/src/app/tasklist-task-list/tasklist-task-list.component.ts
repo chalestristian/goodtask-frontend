@@ -21,31 +21,35 @@ export class TasklistTaskListComponent {
   showToast = false;
   titleToast = "";
   messageToast = "";
-
   
-
-
-
   constructor(public taskService: GoodtaskService) { }
 
- 
   ngOnInit() {
     this.list();
-    
-
   }
 
   update(task: TaskModel) {
     this.task.id = task.id;
     this.task.task = task.task;
     this.task.active = task.active;
+    
+    let erro = String(`titleToast: ${this.titleToast} message: ${this.messageToast}`)
+    let validate = this.task.task.trim()
+
+    if(validate == "" || validate == "null" || validate.length<=0){
+      this.showToast = true;
+      this.titleToast = "Error:"
+      this.messageToast = "Task can't be updated to an empty value!"      
+      setTimeout(() => {this.showToast = false;}, 4000)
+
+      throw new Error(erro);
+    }
 
     this.taskService.UpdateTask(this.task).subscribe(task => {
       this.task = new TaskModel();
       this.list();
-
     }, err => {
-      console.log("Erro ao atualizar task", err)
+      throw new Error(erro, err);
     })
   }
 
@@ -83,8 +87,7 @@ export class TasklistTaskListComponent {
     if(validate == "" || validate == "null" || validate.length<=0){
       this.showToast = true;
       this.titleToast = "Error:"
-      this.messageToast = "Task can't be empty"
-      
+      this.messageToast = "Task can't be created with an empty value!"      
       setTimeout(() => {this.showToast = false;}, 4000)
 
       throw new Error(erro);
@@ -95,7 +98,7 @@ export class TasklistTaskListComponent {
     this.taskService.CreateTask(this.task).subscribe(task => {
       this.list();
     }, err => {
-      throw new Error(erro);
+      throw new Error(erro, err);
     })
   }
 
