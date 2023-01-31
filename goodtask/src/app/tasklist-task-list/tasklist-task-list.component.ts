@@ -21,7 +21,8 @@ export class TasklistTaskListComponent {
   showToast = false;
   titleToast = "";
   messageToast = "";
-  
+  notask = 0;
+
   constructor(public taskService: GoodtaskService) { }
 
   ngOnInit() {
@@ -65,13 +66,16 @@ export class TasklistTaskListComponent {
 
   list() {
     this.taskService.ListTasks().subscribe(tasks => {
+   
       this.tasks = tasks;
       this.task = new TaskModel();
-
       this.tasks.sort(function (x, y) {
         return y.active - x.active
       });
 
+
+      this.notask = this.tasks.length;
+      console.log(this.notask)
 
     }, err => {
       console.log('Erro ao listar task', err)

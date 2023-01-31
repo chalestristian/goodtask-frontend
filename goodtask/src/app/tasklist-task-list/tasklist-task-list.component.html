@@ -56,7 +56,16 @@
 </main>
 
 <div id="erro-box">
-	<ngb-toast *ngIf="showToast" header="{{titleToast}}"[autohide]="false" color="blue" (hidden)="showToast=false">
+<ngb-toast *ngIf="showToast" header="{{titleToast}}"[autohide]="false" color="blue" (hidden)="showToast=false">
 		{{messageToast}}
 	</ngb-toast>
 </div>
+
+<!-- PUT IMAGE BACKGROUND IF THERE IS NOT ANY TASK -->
+<!-- <div *ngIf='notask < 1'>
+  <img src="../../assets/no_data.png" alt="">
+</div> --> 
+
+
+
+
