@@ -8,7 +8,7 @@
 
   <div>
     <form [formGroup]="taskForm" (ngSubmit)="create()">
-      <input type="text" class="form-create" formControlName="task" placeholder="Create a new task" />
+      <input type="text" class="form-create" formControlName="task" placeholder="Create a new task"  required  />
       <button type="submit" class="btn-create pointer">Create</button>
     </form>
   </div>
@@ -34,16 +34,15 @@
           </div>
 
 
-          <span *ngIf='!task.inputshow' (click)="task.inputshow = !task.inputshow" class="task-description pointer"
-            placement="top" ngbTooltip="Edit task">{{task.task}}
-            <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}"
-              placement="top" ngbTooltip="Edit task">edit</span>
-          </span>
+          <span *ngIf='!task.inputshow' (click)="task.inputshow = !task.inputshow" class="task-description pointer" placement="top" ngbTooltip="Edit task">{{task.task}}
+          <span class="material-symbols-outlined btns edit" [ngClass]="{green: !task.active, red: task.active}" placement="end" ngbTooltip="Edit task">edit</span></span>
           <span *ngIf='!task.inputshow' class="material-symbols-outlined btns pointer delete"
             [ngClass]="{green: !task.active, red: task.active}" (click)="remove(task.id)" placement="top"
             ngbTooltip="Delete task">delete_forever</span>
           <input *ngIf='task.inputshow' [ngClass]="{greenInput: !task.active, redInput: task.active}" class="input"
-            value="{{task.task}}" type='text' name="" id='{{task.id}}' [(ngModel)]="task.task" />
+            value="{{task.task}}" type='text' name="" id='{{task.id}}' [(ngModel)]="task.task"/>
+
+            
           <span *ngIf='task.inputshow' class="material-symbols-outlined btns pointer"
             [ngClass]="{green: !task.active, red: task.active}" (click)="list()" placement="top"
             ngbTooltip="Discard changes">cancel</span>
@@ -55,3 +54,9 @@
     </div>
   </div>
 </main>
+
+<div id="erro-box">
+	<ngb-toast *ngIf="showToast" header="{{titleToast}}"[autohide]="false" color="blue" (hidden)="showToast=false">
+		{{messageToast}}
+	</ngb-toast>
+</div>

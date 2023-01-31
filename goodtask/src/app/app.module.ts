@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    AppRoutingModule, NgbModule
+    AppRoutingModule,
+    NgbModule,
   ],
   providers: [HttpClientModule, TaskModel],
   bootstrap: [AppComponent]

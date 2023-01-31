@@ -3,6 +3,7 @@ import { TaskModel } from '../model/TaskModel';
 import { GoodtaskService } from '../service/goodtask.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-tasklist-task-list',
   templateUrl: './tasklist-task-list.component.html',
@@ -12,11 +13,26 @@ export class TasklistTaskListComponent {
   task: TaskModel = new TaskModel();
   tasks: Array<any> = new Array();
   sorting: Array<any> = new Array();
-  taskForm = new FormGroup({ task: new FormControl(''), });
+  taskForm = new FormGroup(
+    {
+      task: new FormControl(''),
+    });
+  
+  showToast = false;
+  titleToast = "";
+  messageToast = "";
+
+  
+
+
 
   constructor(public taskService: GoodtaskService) { }
+
+ 
   ngOnInit() {
     this.list();
+    
+
   }
 
   update(task: TaskModel) {
@@ -60,13 +76,26 @@ export class TasklistTaskListComponent {
 
   create() {
     this.task.task = String(this.taskForm.value.task);
+    
+    let erro = String(`titleToast: ${this.titleToast} message: ${this.messageToast}`)
+    let validate = this.task.task.trim()
+   
+    if(validate == "" || validate == "null" || validate.length<=0){
+      this.showToast = true;
+      this.titleToast = "Error:"
+      this.messageToast = "Task can't be empty"
+      
+      setTimeout(() => {this.showToast = false;}, 4000)
+
+      throw new Error(erro);
+    }
+
     this.taskForm.reset();
-    this.list();
 
     this.taskService.CreateTask(this.task).subscribe(task => {
       this.list();
     }, err => {
-      console.log("Erro ao criar task", err)
+      throw new Error(erro);
     })
   }
 
